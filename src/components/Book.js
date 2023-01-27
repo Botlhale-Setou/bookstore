@@ -1,7 +1,8 @@
 import React from 'react';
+// eslint-disable-next-line import/no-extraneous-dependencies
+import PropTypes from 'prop-types';
 
 const Book = (props) => {
-  // eslint-disable-next-line react/prop-types
   const { title, author } = props;
   return (
     <div className="book">
@@ -26,6 +27,11 @@ const Book = (props) => {
       </div>
     </div>
   );
+};
+
+Book.propTypes = {
+  title: PropTypes.string.isRequired,
+  author: PropTypes.string.isRequired,
 };
 
 export default Book;
