@@ -4,7 +4,7 @@ const REM_BOOK = 'REM_BOOK';
 const INIT_STATE = [];
 
 // Define reducer
-const booksReducer = (state = INIT_STATE, action) => {
+export default function booksReducer(state = INIT_STATE, action) {
   switch (action.type) {
     case ADD_BOOK:
       return [
@@ -25,7 +25,7 @@ const booksReducer = (state = INIT_STATE, action) => {
     default:
       return state;
   }
-};
+}
 
 // Define actions
 const addBook = () => ({
@@ -36,4 +36,4 @@ const remBook = () => ({
   type: REM_BOOK,
 });
 
-export { booksReducer, addBook, remBook };
+export { addBook, remBook };

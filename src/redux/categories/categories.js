@@ -4,7 +4,7 @@ const IN_PROGRESS = 'IN_PROGRESS';
 const INIT_STATE = [];
 
 // Defining reducer
-const categoryReducer = (state = INIT_STATE, action) => {
+export default function categoryReducer(state = INIT_STATE, action) {
   switch (action.type) {
     case COMPLETED:
       return 'under construction';
@@ -13,7 +13,7 @@ const categoryReducer = (state = INIT_STATE, action) => {
     default:
       return state;
   }
-};
+}
 
 // Defining action creators
 const setCompleted = () => ({
@@ -24,4 +24,4 @@ const setInProgress = () => ({
   type: IN_PROGRESS,
 });
 
-export { categoryReducer, setCompleted, setInProgress };
+export { setCompleted, setInProgress };
