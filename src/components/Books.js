@@ -1,16 +1,27 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 import Navbar from './Navbar';
 import Book from './Book';
 import BookForm from './BookForm';
 
-const Books = () => (
-  <div>
-    <Navbar />
-    <div className="bookList">
-      <Book title="Mastery" author="Robert Greene" />
+const Books = () => {
+  const bookArr = useSelector((state) => state.book);
+  return (
+    <div>
+      <Navbar />
+      <div className="bookList">
+        {bookArr.map((book) => (
+          <Book
+            key={book.id}
+            id={book.id}
+            title={book.title}
+            author={book.author}
+          />
+        ))}
+      </div>
+      <BookForm />
     </div>
-    <BookForm />
-  </div>
-);
+  );
+};
 
 export default Books;

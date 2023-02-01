@@ -1,8 +1,16 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { useDispatch } from 'react-redux';
+import { remBook } from '../redux/books/books';
 
 const Book = (props) => {
-  const { title, author } = props;
+  const { title, author, id } = props;
+
+  const dispatch = useDispatch();
+  const interimRemBook = () => {
+    dispatch(remBook(id));
+  };
+
   return (
     <div className="book">
       <div className="bookInfo">
@@ -11,7 +19,7 @@ const Book = (props) => {
         <p className="author">{author}</p>
         <div className="bookOptions">
           <p>Comments</p>
-          <p>Remove</p>
+          <button type="button" onClick={interimRemBook}>Remove</button>
           <p>Edit</p>
         </div>
       </div>
@@ -29,6 +37,7 @@ const Book = (props) => {
 };
 
 Book.propTypes = {
+  id: PropTypes.number.isRequired,
   title: PropTypes.string.isRequired,
   author: PropTypes.string.isRequired,
 };
