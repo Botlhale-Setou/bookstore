@@ -10,7 +10,14 @@ const Books = () => {
     <div>
       <Navbar />
       <div className="bookList">
-        {bookArr.map((book) => <Book key={book.id} title={book.title} author={book.author} />)}
+        {bookArr.map((book) => (
+          <Book
+            key={book.id}
+            id={book.id}
+            title={book.title}
+            author={book.author}
+          />
+        ))}
       </div>
       <BookForm />
     </div>

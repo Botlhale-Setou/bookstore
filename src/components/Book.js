@@ -4,11 +4,11 @@ import { useDispatch } from 'react-redux';
 import { remBook } from '../redux/books/books';
 
 const Book = (props) => {
-  const { title, author, key } = props;
+  const { title, author, id } = props;
 
   const dispatch = useDispatch();
   const interimRemBook = () => {
-    dispatch(remBook(key));
+    dispatch(remBook(id));
   };
 
   return (
@@ -37,7 +37,7 @@ const Book = (props) => {
 };
 
 Book.propTypes = {
-  key: PropTypes.number.isRequired,
+  id: PropTypes.number.isRequired,
   title: PropTypes.string.isRequired,
   author: PropTypes.string.isRequired,
 };
