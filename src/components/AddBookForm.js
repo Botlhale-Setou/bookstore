@@ -16,7 +16,7 @@ const AddBookForm = () => {
       ...newState,
       item_id: nanoid(),
       [event.target.name]: event.target.value,
-      category: 'Category Action',
+      category: 'Action',
     });
   };
 
@@ -39,6 +39,7 @@ const AddBookForm = () => {
       <div>
         <form onSubmit={onSubmitHandler}>
           <input
+            className="titleInp"
             type="text"
             name="title"
             placeholder="Add Title"
@@ -47,6 +48,7 @@ const AddBookForm = () => {
             onChange={onChangeHandler}
           />
           <input
+            className="authorInp"
             type="text"
             name="author"
             placeholder="Add Author"
@@ -54,7 +56,7 @@ const AddBookForm = () => {
             value={newState.author}
             onChange={onChangeHandler}
           />
-          <button type="submit">ADD BOOK </button>
+          <button type="submit" className="addBookBtn">ADD BOOK </button>
         </form>
       </div>
     </div>
