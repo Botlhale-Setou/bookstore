@@ -1,27 +1,24 @@
-// Defining constants
-const COMPLETED = 'COMPLETED';
-const IN_PROGRESS = 'IN_PROGRESS';
-const INIT_STATE = [];
+import types from '../types/types';
 
-// Defining reducer
-export default function categoryReducer(state = INIT_STATE, action) {
+// initial state
+const initialState = {
+  categories: [],
+};
+// Actions Creators
+export const checkStatus = () => ({
+  type: types.BOOK_STATUS_CHECK,
+});
+
+const CategoriesReducer = (state = initialState, action) => {
   switch (action.type) {
-    case COMPLETED:
-      return 'under construction';
-    case IN_PROGRESS:
-      return 'under construction';
+    case types.BOOK_STATUS_CHECK:
+      return {
+        ...state,
+        categories: [...state.categories, 'Under Construction'],
+      };
     default:
       return state;
   }
-}
+};
 
-// Defining action creators
-const setCompleted = () => ({
-  type: COMPLETED,
-});
-
-const setInProgress = () => ({
-  type: IN_PROGRESS,
-});
-
-export { setCompleted, setInProgress };
+export default CategoriesReducer;
