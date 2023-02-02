@@ -1,48 +1,38 @@
-// Define constants
-const ADD_BOOK = 'ADD_BOOK';
-const REM_BOOK = 'REM_BOOK';
-const INIT_STATE = [
-  {
-    id: 0,
-    title: 'Mastery',
-    author: 'Robert Greene',
-  },
-  {
-    id: 1,
-    title: 'The 48 Laws Of Power',
-    author: 'Robert Greene',
-  },
-  {
-    id: 2,
-    title: 'The 12 Rules For Life',
-    author: 'Jordan Peterson',
-  },
-];
+import types from '../types/types';
+// initial state
+const initialState = {
+  numberOfBooks: '4',
+  books: [
 
-// Define reducer
-export default function booksReducer(state = INIT_STATE, action) {
+    { id: '01', title: 'In Search of Lost Time', author: 'Marcel Proust' },
+    { id: '02', title: 'One Hundred Years of Solitude', author: 'Gabriel Garcia Marquez' },
+    { id: '03', title: 'The Great Gatsby', author: 'F. Scott Fitzgerald' },
+    { id: '04', title: 'The Art of War', author: 'Sun Tzu' },
+  ],
+};
+// Actions Creators
+export const addingBook = (addedBook) => ({ type: types.ADDED_BOOK, addedBook });
+
+export const removingBook = (id) => ({ type: types.REMOVED_BOOK, id });
+
+// Reducers Creator
+const booksReducer = (state = initialState, action) => {
   switch (action.type) {
-    case ADD_BOOK:
-      return [
+    case types.ADDED_BOOK:
+      return {
         ...state,
-        action.book,
-      ];
-    case REM_BOOK:
-      return state.filter((book) => book.id !== action.id);
+        numberOfBooks: state.numberOfBooks + 1,
+        books: [...state.books, action.addedBook],
+      };
+    case types.REMOVED_BOOK:
+      return {
+        numberOfBooks: state.numberOfBooks - 1,
+        ...state,
+        books: [...state.books.filter((book) => book.id !== action.id)],
+      };
     default:
       return state;
   }
-}
+};
 
-// Define actions
-const addBook = (book) => ({
-  type: ADD_BOOK,
-  book,
-});
-
-const remBook = (id) => ({
-  type: REM_BOOK,
-  id,
-});
-
-export { addBook, remBook };
+export default booksReducer;
